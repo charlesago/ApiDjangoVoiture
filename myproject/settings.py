@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -90,19 +91,19 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-"default": {
-"ENGINE": "django.db.backends.postgresql",
-"NAME": "apidjango",
-"USER": "charles",
-"PASSWORD": "Chedri26",
-"HOST": "127.0.0.1",
-"PORT": "5432",
-}
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "carapi",
+        "USER": "charles",
+        "PASSWORD": "Chedri26",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+AUTH_USER_MODEL = 'myapi.CustomUser'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

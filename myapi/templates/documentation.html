@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+        }
+        pre {
+            background-color: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+            color: #e74c3c;
+        }
+        .response-example {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .response-example pre {
+            background-color: transparent;
+            color: #ecf0f1;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation de l'API</h1>
+    <p>Bienvenue dans la documentation de l'API ! Voici les endpoints disponibles :</p>
+
+    <h2>Endpoints pour les modèles</h2>
+
+     <li><strong>POST</strong> <code>/api/register</code> -  Création d'un compte </li>
+        <li><strong>POST</strong> <code>/api/token</code> - Authentification</li>
+
+
+    <h2>(Authentification et validation requises) </h2>
+    <!DOCTYPE html>
+
+    <h2>Models</h2>
+    <p><strong>GET</strong> <code>/api/models</code> - Retrieve a list of car models</p>
+    <div class="response-example">
+        <h3>Example response:</h3>
+        <pre>
+[
+    {
+        "id": 1,
+        "brand": "BMW",
+        "name": "Serie 3 e46",
+        "year": 2004,
+        "price": "31500.00"
+    },
+    {
+        "id": 2,
+        "brand": "Audi",
+        "name": "A4 B8",
+        "year": 2010,
+        "price": "27500.00"
+    }
+]
+        </pre>
+    </div>
+
+    <h2>Create a Model</h2>
+    <p><strong>POST</strong> <code>/api/create/model</code> - Create a new car model</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+{
+    "brand": "BMW",
+    "name": "Serie 3 e46",
+    "year": 2004,
+    "price": "31500.00"
+}
+        </pre>
+    </div>
+     <h2>Update a Model</h2>
+
+
+    <p><strong>PATCH</strong> <code>/api/update/model/{id}</code> - Update a car model</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+{
+    "brand": "BMW",
+    "name": "Serie 3 e461",
+    "year": 2003,
+    "price": "31000.00"
+}
+        </pre>
+    </div>
+         <h2>Delete a Model</h2>
+
+ <p><strong>DELETE</strong> <code>/api/delete/model/{id}</code> - Delete a car model</p>
+
+
+    <h2>Brands</h2>
+    <p><strong>GET</strong> <code>/api/marques</code> - Retrieve a list of car brands</p>
+    <div class="response-example">
+        <h3>Example response:</h3>
+        <pre>
+[
+     {
+        "id": 1,
+        "group": "Groupe BMW",
+        "name": "BMW"
+    },
+     {
+        "id": 1,
+        "group": "Groupe Volkswagen",
+        "name": "Volkswagen"
+    }
+]
+        </pre>
+    </div>
+
+     <h2>Create a Brand</h2>
+    <p><strong>POST</strong> <code>/api/create/marque</code> - Create a new car brand</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+{
+      "group": "Groupe BMW",
+      "name": "MINI"
+}
+        </pre>
+    </div>
+
+  <h2>Update a Brand</h2>
+    <p><strong>PATCH</strong> <code>/api/update/marque/{id}</code> - Update a brand</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+{
+      "group": "Groupe Volkswagen",
+      "name": "Volkswagen"
+}
+        </pre>
+    </div>
+
+            <h2>Delete a Brand</h2>
+
+ <p><strong>DELETE</strong> <code>/api/delete/marque/{id}</code> - Delete a Brand</p>
+
+
+
+
+    <h2>Groups</h2>
+    <p><strong>GET</strong> <code>/api/groupes</code> - Retrieve a list of groups</p>
+    <div class="response-example">
+        <h3>Example response:</h3>
+        <pre>
+
+    {
+        "name": "Groupe BMW"
+    }
+
+        </pre>
+    </div>
+
+ <h2>Create Groups</h2>
+    <p><strong>POST</strong> <code>/api/create/groupe</code> - Create a new car group</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+
+    {
+        "name": "Groupe Fiat"
+    }
+
+        </pre>
+    </div>
+
+ <h2>Update Groups</h2>
+    <p><strong>PATCH</strong> <code>/api/update/groupe/{id}</code> - Update a car group</p>
+    <div class="response-example">
+        <h3>Example request:</h3>
+        <pre>
+
+    {
+        "name": "Groupe Fiat!!"
+    }
+
+        </pre>
+    </div>
+
+        <h2>Delete a Group</h2>
+
+ <p><strong>DELETE</strong> <code>/api/delete/groupe/{id}</code> - Delete a Group</p>
+
+
+</body>
+</html>

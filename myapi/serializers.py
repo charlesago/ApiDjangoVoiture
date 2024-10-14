@@ -1,39 +1,40 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Model, Marque, Groupe
-from myapi.models import Marque
+from .models import Model, Brand, Group, CustomUser
+from myapi.models import Brand
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True)
+    password = serializers.CharField(write_only=True)
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
+        model = CustomUser
+        fields = ('username', 'email', 'password', 'enabled')
 
     def create(self, validated_data):
-        user = User.objects.create_user(
+
+        user = CustomUser.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
-            password=validated_data['password']
+            password=validated_data['password'],
+            enabled=validated_data.get('enabled', 0)
         )
         return user
-
 class ModelSerializer(serializers.ModelSerializer):
-    marque = serializers.PrimaryKeyRelatedField(queryset=Marque.objects.all())  # Sélection de la marque par ID
-
+    brand = serializers.SlugRelatedField(queryset=Brand.objects.all(), slug_field='name')
     class Meta:
         model = Model
         fields = '__all__'
 
 class MarqueSerializer(serializers.ModelSerializer):
+    group = serializers.SlugRelatedField(queryset=Group.objects.all(), slug_field='name')
 
     class Meta:
-        model = Marque
-        fields = ['nom', 'groupe']
+        model = Brand
+        fields = '__all__'
 
 class GroupeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Groupe
-        fields = ['nom']
+        model = Group
+        fields = ['name']
