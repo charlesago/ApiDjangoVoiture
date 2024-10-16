@@ -2,13 +2,18 @@ from django.urls import path, include
 
 from .views import RegisterView, ProtectedView, ModelListView, ModelCreateView, ModelUpdateView, ModelDeleteView, \
     MarqueListView, MarqueCreateView, MarqueUpdateView, MarqueDeleteView, GroupeListView, GroupeCreateView, \
-    GroupeUpdateView, GroupeDeleteView, manage_users, accept_user, CustomLoginView, APIDocumentationView
+    GroupeUpdateView, GroupeDeleteView, manage_users, accept_user, CustomLoginView, APIDocumentationView, \
+    manage_api_key, protected_api_view, CreateClientView, GetClientCountByUUIDView, DeleteClientByUUIDView
 
 urlpatterns = [
     path('protected/', ProtectedView.as_view(), name='protected'),
     path('register', RegisterView.as_view(), name='register'),
     path('documentation', APIDocumentationView.as_view(), name='api-documentation'),
-
+    path('manage-api-key', manage_api_key, name='manage_api_key'),
+    path('protected-api/', protected_api_view, name='protected_api'),
+    path('create-client', CreateClientView.as_view(), name='create-client'),
+    path('client-count/<uuid:uuid>', GetClientCountByUUIDView.as_view(), name='get-client-count'),
+    path('delete-client/<str:uuid>', DeleteClientByUUIDView.as_view(), name='delete-client'),
 
     path('login/', CustomLoginView.as_view(), name='login'),
     path('manage-users/', manage_users, name='manage_users'),

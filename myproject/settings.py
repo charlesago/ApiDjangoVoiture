@@ -17,15 +17,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    'rest_framework_simplejwt.authentication.JWTAuthentication',  # Auth JWT en premier
+    'myapi.authentication.PlatformApiKeyAuthentication',  # Auth pour la plateforme
+    'myapi.authentication.ClientApiKeyAuthentication',  # Auth pour les clients
+),
+'DEFAULT_PERMISSION_CLASSES': (
+    'myapi.permissions.IsAuthenticatedAndEnabled',  # Permissions personnalisées
+),
 }
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Le token expire dans 60 minutes
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Le refresh token expire dans 1 jour
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
 }
@@ -86,6 +88,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 1026
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'charles.agostinelli26@gmail.com'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
