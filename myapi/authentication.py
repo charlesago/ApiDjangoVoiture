@@ -53,16 +53,16 @@ class ClientApiKeyAuthentication(BaseAuthentication):
             raise AuthenticationFailed('Clé API invalide ou inactive pour le client.')
 
         if client.count <= 0:
-            logger.debug(f"Le client {client.nom} a épuisé ses requêtes. Désactivation de la clé.")
+            logger.debug(f"Le client {client.email} a épuisé ses requêtes. Désactivation de la clé.")
             client.is_active = False
             client.save()
             raise AuthenticationFailed('Votre compte a épuisé son nombre de requêtes.')
 
-        logger.debug(f"Le client {client.nom} a encore {client.count} requêtes disponibles.")
+        logger.debug(f"Le client {client.email} a encore {client.count} requêtes disponibles.")
 
         client.count -= 1
         client.save()
 
-        logger.debug(f"Le compteur de requêtes du client {client.nom} a été décrémenté à {client.count}.")
+        logger.debug(f"Le compteur de requêtes du client {client.email} a été décrémenté à {client.count}.")
 
         return (None, None)

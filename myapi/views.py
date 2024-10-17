@@ -84,7 +84,7 @@ class CreateClientView(APIView):
 
     def post(self, request):
         client_id = request.data.get('client_id')
-        nom = request.data.get('nom')
+        email = request.data.get('email')
         api_key = request.data.get('api_key')
         count = request.data.get('count', 1000)
         uuid = request.data.get('uuid')
@@ -92,13 +92,13 @@ class CreateClientView(APIView):
         if Client.objects.filter(client_id=client_id).exists():
             return Response({"error": "Client déjà enregistré"}, status=status.HTTP_400_BAD_REQUEST)
 
-        new_client = Client(client_id=client_id, nom=nom, api_key=api_key, count=count, uuid=uuid)
+        new_client = Client(client_id=client_id, email=email, api_key=api_key, count=count, uuid=uuid)
         new_client.save()
 
         return Response({
             "message": "Client créé avec succès",
             "client_id": new_client.client_id,
-            "nom": new_client.nom,
+            "email": new_client.email,
             "api_key": new_client.api_key,
             "count": new_client.count,
             "uuid": new_client.uuid
